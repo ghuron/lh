@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FirstDig - Digital Excavation</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -41,8 +42,10 @@
         }
 
         .section { padding: 80px 0; }
-        .hidden { display: none !important; } /* Utility to hide sections */
         
+        /* Utility class to hide protected content */
+        .hidden { display: none !important; }
+
         /* --- HEADER (Dark Theme) --- */
         header {
             background-color: var(--bg-dark);
@@ -84,6 +87,25 @@
             display: flex;
             align-items: center;
             gap: 24px;
+            min-height: 40px; /* Reserve space for avatar */
+        }
+
+        .btn-contact {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--text-white);
+            color: var(--text-white);
+            background: transparent;
+        }
+        
+        .btn-contact:hover { 
+            background: var(--text-white); 
+            color: var(--bg-dark); 
         }
 
         /* --- HERO SECTION --- */
@@ -197,6 +219,8 @@
             font-weight: 700;
         }
 
+        .section-title p { color: var(--text-light); font-size: 1.1rem; }
+
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -211,18 +235,26 @@
             transition: transform 0.3s ease;
             border-top: 4px solid transparent;
         }
-        
-        .card:hover { border-top-color: var(--accent-orange); }
 
-        .card h3 { color: var(--primary-blue); margin-bottom: 15px; font-size: 1.4rem; }
+        .card:hover { 
+            transform: translateY(-5px); 
+            border-top-color: var(--accent-orange);
+        }
+
+        .card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
         .card p { color: var(--text-light); font-size: 1rem; line-height: 1.6; }
 
-        /* --- CONTACT & UPLOAD SECTION --- */
+        /* --- CONTACT SECTION --- */
         .contact-section {
             background: var(--white);
             padding: 80px 0;
             border-top: 1px solid #eee;
-            min-height: 600px; /* Prevent layout jump */
+            min-height: 600px;
         }
 
         .form-container {
@@ -274,7 +306,16 @@
             font-size: 1rem;
             background: #f9f9f9;
         }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: #fff;
+        }
 
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        /* Auth Placeholder Styles */
         .auth-placeholder {
             display: flex;
             justify-content: center;
@@ -282,6 +323,9 @@
             min-height: 300px;
             text-align: center;
             flex-direction: column;
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 40px;
         }
 
         /* --- FOOTER --- */
@@ -293,6 +337,31 @@
             font-size: 0.9rem;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
+        
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            /* Keep header actions visible on mobile for avatar */
+            /* .header-actions { display: none; } */ 
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 40px;
+            }
+            .hero-text { max-width: 100%; }
+            .hero-buttons { justify-content: center; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-image { width: 100%; max-width: 400px; }
+        }
+
+        @media (max-width: 768px) {
+            .left-group { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .header-tagline { 
+                border-left: none; 
+                padding-left: 0; 
+                font-size: 14px; 
+                color: rgba(255,255,255,0.7);
+            }
+        }
     </style>
 </head>
 <body>
@@ -301,14 +370,14 @@
         <div class="container nav-flex">
             <div class="left-group">
                 <a href="#" class="logo">
-                    <img src="https://firstlinesoftware.com/wp-content/uploads/2021/06/logo-white.svg" alt="First Line Software">
+                    <img src="logo.png" alt="First Line Software">
                 </a>
-                <span class="header-tagline">First Dig - Digital Excavation by First Line Software</span>
+                <span class="header-tagline">First Dig: Digital Excavation by First Line Software</span>
             </div>
 
             <div class="header-actions">
                 <div id="user-button"></div>
-            </div>
+                </div>
         </div>
     </header>
 
@@ -316,10 +385,11 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>FirstDig</h1>
+                    <h1>First Dig</h1>
                     <p>Unlocking the Value Hidden in Your Legacy Debt. We turn undocumented legacy monoliths into clear, human-readable blueprints.</p>
                     <div class="hero-buttons">
                         <a href="Summary.pdf" target="_blank" class="btn-primary">View Sample Summary</a>
+                        
                         <a href="Blueprint.pdf" target="_blank" class="btn-secondary">View Sample Blueprint &rarr;</a>
                     </div>
                 </div>
@@ -336,18 +406,19 @@
                 <h2>The Challenge</h2>
                 <p>Why modernization feels like a black box risk</p>
             </div>
+            
             <div class="grid-3">
                 <div class="card">
                     <h3>Trapped Logic</h3>
-                    <p>Your core business logic is locked in aging systems like Delphi, VB6, or C++.</p>
+                    <p>Your core business logic is locked in aging systems like Delphi, VB6, or C++. It works, but it's rigid and hard to integrate with modern cloud tools.</p>
                 </div>
                 <div class="card">
                     <h3>Lost Knowledge</h3>
-                    <p>The original developers are gone. Documentation is lost or outdated.</p>
+                    <p>The original developers are gone. Documentation is lost or outdated. No one fully understands how the system makes decisions anymore.</p>
                 </div>
                 <div class="card">
                     <h3>High Maintenance</h3>
-                    <p>Keeping the lights on consumes 80% of your IT budget.</p>
+                    <p>Keeping the lights on consumes 80% of your IT budget, leaving little room for innovation or new feature development.</p>
                 </div>
             </div>
         </div>
@@ -362,12 +433,13 @@
                 </div>
                 
                 <div id="sign-in-section" class="auth-placeholder">
-                    <p style="margin-bottom: 20px; font-size: 1.1rem; color: #555;">To upload files and contact us, please verify your identity.</p>
+                    <p style="margin-bottom: 20px; font-size: 1.1rem; color: #555; font-weight: 500;">
+                        Please sign in with LinkedIn to verify your identity before uploading files.
+                    </p>
                     <div id="sign-in-container"></div>
                 </div>
 
                 <div id="protected-content" class="hidden">
-                    
                     <a href="https://www.dropbox.com/request/C1tPo8IoxzznIP5qlzJ9" target="_blank" class="dropbox-btn">
                         Step 1: Upload Source Code to Dropbox (Secure) &nearr;
                     </a>
@@ -415,29 +487,25 @@
     <script>var submitted=false;</script>
 
     <script>
-        const clerkPubKey = 'pk_test_c2hhcmluZy1zaGFyay00NC5jbGVyay5hY2NvdW50cy5kZXYk'; 
+        // Your specific Publishable Key
+        const clerkPubKey = 'pk_test_c2hhcmluZy1zaGFyay00NC5jbGVyay5hY2NvdW50cy5kZXYk';
 
         window.addEventListener("load", async function () {
-            if (!clerkPubKey.includes('pk_test')) {
-                console.error("Clerk API Key is missing!");
-                return;
-            }
-
             const clerk = new window.Clerk(clerkPubKey);
             await clerk.load();
 
             if (clerk.user) {
-                // ПОЛЬЗОВАТЕЛЬ ЗАЛОГИНЕН
+                // === USER IS LOGGED IN ===
                 
-                // 1. Показываем скрытый контент (Форму и Дропбокс)
+                // 1. Show protected content (Form + Dropbox)
                 document.getElementById('protected-content').classList.remove('hidden');
                 document.getElementById('sign-in-section').classList.add('hidden');
 
-                // 2. Вставляем кнопку профиля в Header
+                // 2. Mount User Profile Button in Header
                 const userButtonDiv = document.getElementById('user-button');
                 clerk.mountUserButton(userButtonDiv);
 
-                // 3. Автозаполнение формы данными из LinkedIn/Clerk
+                // 3. Autofill Form Fields
                 if(clerk.user.fullName) {
                     document.getElementById('input-name').value = clerk.user.fullName;
                 }
@@ -446,18 +514,20 @@
                 }
 
             } else {
-                // ПОЛЬЗОВАТЕЛЬ НЕ ЗАЛОГИНЕН
+                // === USER IS GUEST ===
                 
-                // 1. Показываем форму входа
+                // 1. Show Sign In Button
                 document.getElementById('sign-in-section').classList.remove('hidden');
                 document.getElementById('protected-content').classList.add('hidden');
 
-                // 2. Монтируем компонент входа
+                // 2. Mount Sign In Component
                 clerk.mountSignIn(document.getElementById('sign-in-container'), {
                     appearance: {
                         elements: {
-                            footer: "hidden", // Скрываем лишний текст "Secured by Clerk"
-                            card: "shadow-none border-none", // Убираем рамки, чтобы сливалось с фоном
+                            footer: "hidden", 
+                            card: "shadow-none border-none",
+                            headerTitle: "hidden",
+                            headerSubtitle: "hidden"
                         }
                     }
                 });
