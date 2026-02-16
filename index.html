@@ -9,7 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <script async crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"></script>
+    <script>var submitted=false;</script>
+
+    <script 
+        async 
+        crossorigin="anonymous" 
+        data-clerk-publishable-key="pk_test_c2hhcmluZy1zaGFyay00NC5jbGVyay5hY2NvdW50cy5kZXYk"
+        src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js">
+    </script>
 
     <style>
         /* --- RESET & BASE STYLES --- */
@@ -340,8 +347,6 @@
         
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
-            /* Keep header actions visible on mobile for avatar */
-            /* .header-actions { display: none; } */ 
             .hero-content {
                 flex-direction: column-reverse;
                 text-align: center;
@@ -377,7 +382,7 @@
 
             <div class="header-actions">
                 <div id="user-button"></div>
-                </div>
+            </div>
         </div>
     </header>
 
@@ -389,7 +394,6 @@
                     <p>Unlocking the Value Hidden in Your Legacy Debt. We turn undocumented legacy monoliths into clear, human-readable blueprints.</p>
                     <div class="hero-buttons">
                         <a href="Summary.pdf" target="_blank" class="btn-primary">View Sample Summary</a>
-                        
                         <a href="Blueprint.pdf" target="_blank" class="btn-secondary">View Sample Blueprint &rarr;</a>
                     </div>
                 </div>
@@ -484,28 +488,27 @@
     </footer>
 
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {alert('Thank you! We received your inquiry.'); window.location.reload();}"></iframe>
-    <script>var submitted=false;</script>
 
     <script>
-        // Your specific Publishable Key
         const clerkPubKey = 'pk_test_c2hhcmluZy1zaGFyay00NC5jbGVyay5hY2NvdW50cy5kZXYk';
 
         window.addEventListener("load", async function () {
+            // Создаем экземпляр Clerk
             const clerk = new window.Clerk(clerkPubKey);
             await clerk.load();
 
             if (clerk.user) {
-                // === USER IS LOGGED IN ===
+                // === ПОЛЬЗОВАТЕЛЬ ЗАЛОГИНЕН ===
                 
-                // 1. Show protected content (Form + Dropbox)
+                // 1. Показываем скрытый контент
                 document.getElementById('protected-content').classList.remove('hidden');
                 document.getElementById('sign-in-section').classList.add('hidden');
 
-                // 2. Mount User Profile Button in Header
+                // 2. Вставляем кнопку профиля
                 const userButtonDiv = document.getElementById('user-button');
                 clerk.mountUserButton(userButtonDiv);
 
-                // 3. Autofill Form Fields
+                // 3. Автозаполняем поля формы
                 if(clerk.user.fullName) {
                     document.getElementById('input-name').value = clerk.user.fullName;
                 }
@@ -514,13 +517,11 @@
                 }
 
             } else {
-                // === USER IS GUEST ===
+                // === ГОСТЬ (ПОКАЗЫВАЕМ ВХОД) ===
                 
-                // 1. Show Sign In Button
                 document.getElementById('sign-in-section').classList.remove('hidden');
                 document.getElementById('protected-content').classList.add('hidden');
 
-                // 2. Mount Sign In Component
                 clerk.mountSignIn(document.getElementById('sign-in-container'), {
                     appearance: {
                         elements: {
