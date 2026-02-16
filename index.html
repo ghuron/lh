@@ -454,6 +454,8 @@
                 document.getElementById('protected-content').classList.add('hidden');
 
                 window.Clerk.mountSignIn(document.getElementById('sign-in-container'), {
+                    afterSignInUrl: window.location.href, 
+                    afterSignUpUrl: window.location.href,
                     appearance: {
                         elements: {
                             footer: "hidden", 
