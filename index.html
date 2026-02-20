@@ -8,12 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <script>var submitted=false;</script>
 
-    <script 
-        async 
-        crossorigin="anonymous" 
+    <script
+        async
+        crossorigin="anonymous"
         data-clerk-publishable-key="pk_test_c2hhcmluZy1zaGFyay00NC5jbGVyay5hY2NvdW50cy5kZXYk"
         src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js">
     </script>
@@ -351,6 +351,106 @@
             border-top: 1px solid rgba(255,255,255,0.1);
         }
         
+        /* --- DATA PRIVACY SECTION --- */
+        .privacy-section {
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .privacy-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease;
+        }
+
+        .privacy-card:hover { transform: translateY(-3px); }
+
+        .privacy-card .card-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .privacy-card h3 {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .privacy-card p,
+        .privacy-card li {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .privacy-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .privacy-card ul li {
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .privacy-card ul li::before {
+            content: "•";
+            color: var(--accent-blue);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .privacy-card .highlight {
+            color: var(--success-green);
+            font-weight: 700;
+        }
+
+        .consultation-opt-in {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #f9fafb;
+        }
+
+        .consultation-opt-in input[type="checkbox"] {
+            margin-top: 3px;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .consultation-opt-in label {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .consultation-opt-in label small {
+            display: block;
+            color: var(--text-light);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
             .hero-content { flex-direction: column-reverse; text-align: center; gap: 40px; }
@@ -387,10 +487,6 @@
                 <div class="hero-text">
                     <h2>Harvest the Business Logic Trapped in Your Code</h2>
                     <p>Your legacy system contains years of mature business value.<br>We extract it, document it, and prepare it for the AI era.</p>
-                    <div class="hero-buttons">
-                        <a href="Summary.pdf" target="_blank" class="btn-primary">Sample Summary</a>
-                        <a href="Blueprint.pdf" target="_blank" class="btn-secondary">Sample Blueprint</a>
-                    </div>
                 </div>
                 <div class="hero-image-container">
                     <img src="harvester.jpg" alt="FLS Logic Harvester" class="hero-image">
@@ -422,11 +518,86 @@
         </div>
     </section>
 
+    <section class="section privacy-section" data-testid="privacy-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Code. Our Machines.<br>Zero Human Eyes.</h2>
+                <p>Data Privacy &amp; Automated Deletion Policy</p>
+            </div>
+
+            <div class="privacy-grid">
+                <div class="privacy-card" data-testid="privacy-zero-eyes">
+                    <span class="card-icon">&#x1F512;</span>
+                    <h3>The "Zero-Eyes" Guarantee</h3>
+                    <ul>
+                        <li><b>Fully Automated Workflow:</b> From upload through report generation, the entire analysis is handled by an isolated AI pipeline.</li>
+                        <li><b>No Human Access:</b> Unless you specifically request human-assisted processing, no human being will view your submitted files. Your codebase is processed via automated routines only.</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-card" data-testid="privacy-timeline">
+                    <span class="card-icon">&#x23F1;&#xFE0F;</span>
+                    <h3>Processing &amp; Queue Timeline</h3>
+                    <ul>
+                        <li><b>Automated Queue:</b> Upon upload, files enter an automated processing chain. Processing starts usually immediately, with a maximum wait of <b>2 hours</b> depending on queue.</li>
+                        <li><b>Status Alerts:</b> You receive an automated email the moment processing officially begins.</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-card" data-testid="privacy-deletion">
+                    <span class="card-icon">&#x1F5D1;&#xFE0F;</span>
+                    <h3>Verification &amp; Mandatory Deletion</h3>
+                    <ul>
+                        <li>After analysis, the system runs a secondary verification and quality check.</li>
+                        <li><b>Standard Delivery:</b> You receive an email with your Sample Report attached.</li>
+                        <li><b class="highlight">The 2-Hour Wipe:</b> Exactly <b>2 hours</b> after the Sample Report is sent, a mandatory deletion protocol permanently removes all original source code, derivative files, and internal reports.</li>
+                        <li><b>Residual Records:</b> Only your contact details and technical logs remain, referenced by your unique <b>Report Number</b>.</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-card" data-testid="privacy-consultation">
+                    <span class="card-icon">&#x1F91D;</span>
+                    <h3>Engineering Consultation (Opt-In)</h3>
+                    <ul>
+                        <li>If you want to discuss results with the engineering team:</li>
+                        <li><b>Manual Opt-In</b> required during the upload process.</li>
+                        <li><b>Data Retention:</b> Files remain on secure premises to avoid a double-run, providing engineers with the basis for discussion.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section examples-section" data-testid="examples-section" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>See What You'll Get</h2>
+                <p>Sample deliverables from a real legacy Delphi codebase</p>
+            </div>
+
+            <div class="strategy-grid">
+                <div class="strategy-card" data-testid="example-card">
+                    <h3>Executive Summary</h3>
+                    <span class="strategy-tagline">Complete functional overview: traffic analysis, business rules, integrations</span>
+                    <p style="margin-bottom: 20px;">A high-level map of every module, data flow and integration point — exactly what stakeholders need to make informed modernisation decisions.</p>
+                    <a href="reports/process-logic-extract.pdf" target="_blank" class="btn-primary" style="padding: 12px 24px; font-size: 0.95rem;" data-testid="example-pdf-link">View PDF</a>
+                </div>
+
+                <div class="strategy-card" data-testid="example-card">
+                    <h3>Process Logic Extract</h3>
+                    <span class="strategy-tagline">Detailed spec of the most-used module: 11 business rules, approval pipeline</span>
+                    <p style="margin-bottom: 20px;">A granular breakdown of one key module — validation rules, calculation logic, workflow states — ready to hand to your development team.</p>
+                    <a href="reports/timesheet-spec.pdf" target="_blank" class="btn-primary" style="padding: 12px 24px; font-size: 0.95rem;" data-testid="example-pdf-link">View PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="start" class="process-section">
         <div class="container">
             <div class="section-title">
                 <h2>Get Your Free Assessment</h2>
-                <p>Follow these 3 steps to start the harvest</p>
+                <p>Follow these 2 steps to start the harvest</p>
             </div>
 
             <div class="step-container">
@@ -448,26 +619,12 @@
                 <div id="step-2" class="step-block disabled">
                     <div class="step-header">
                         <div class="step-number">2</div>
-                        <div class="step-title">Upload Source Code</div>
+                        <div class="step-title">Describe Your System</div>
                     </div>
                     <div class="step-content">
-                        <p style="margin-bottom: 20px;">Upload your ZIP-archive to our secure Dropbox request folder.</p>
-                        <a href="https://www.dropbox.com/request/C1tPo8IoxzznIP5qlzJ9" target="_blank" class="dropbox-btn">
-                            Upload to Secure Dropbox &nearr;
-                        </a>
-                    </div>
-                </div>
-
-                <div id="step-3" class="step-block disabled">
-                    <div class="step-header">
-                        <div class="step-number">3</div>
-                        <div class="step-title">Project Details</div>
-                    </div>
-                    <div class="step-content">
-                        <p style="margin-bottom: 20px;">Tell us about the system context to help us prepare your assessment.</p>
-                        <form 
-                            action="https://docs.google.com/forms/d/e/1FAIpQLSeW9HKokz3GM5rjzprgmWGAcGvZ2Vfug9Jpbn4V8_AgXpDYqQ/formResponse" 
-                            method="POST" 
+                        <form
+                            action="https://docs.google.com/forms/d/e/1FAIpQLSeW9HKokz3GM5rjzprgmWGAcGvZ2Vfug9Jpbn4V8_AgXpDYqQ/formResponse"
+                            method="POST"
                             target="hidden_iframe"
                             onsubmit="submitted=true;"
                         >
@@ -478,7 +635,19 @@
                                 <textarea name="entry.1053593160" style="min-height: 240px;" placeholder="E.g., 'This is a Delphi 7 order processing module. We suspect the tax logic is hardcoded...'"></textarea>
                             </div>
 
-                            <button type="submit" class="btn-primary" style="width: 100%;">Submit Inquiry</button>
+                            <p style="margin-bottom: 20px;">
+                                <a href="https://www.dropbox.com/request/C1tPo8IoxzznIP5qlzJ9" target="_blank" data-testid="attach-source-code" style="color: var(--text-light); font-size: 0.95rem; text-decoration: none;">&#x1F4CE; Attach Source Code</a>
+                            </p>
+
+                            <div class="consultation-opt-in" data-testid="consultation-checkbox">
+                                <input type="checkbox" id="consultation-opt-in" name="entry.consultation" value="Yes">
+                                <label for="consultation-opt-in">
+                                    I require human-assisted engineering consultation
+                                    <small>(This disables the 2-hour auto-deletion policy)</small>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn-primary" style="width: 100%;">Submit Request</button>
                         </form>
                     </div>
                 </div>
@@ -501,23 +670,22 @@
 
             const step1 = document.getElementById('step-1');
             const step2 = document.getElementById('step-2');
-            const step3 = document.getElementById('step-3');
             const step1Num = document.getElementById('step-1-num');
             const authMsg = document.getElementById('auth-success-msg');
             const signInContainer = document.getElementById('sign-in-container');
 
             if (window.Clerk.user) {
                 // === USER LOGGED IN ===
-                
+
                 // 1. Mark Step 1 as Done
                 step1Num.classList.add('done');
                 step1Num.innerHTML = "&check;";
-                signInContainer.classList.add('hidden'); // Hide the huge login form
-                authMsg.classList.remove('hidden');      // Show success message
-                
-                // 2. Enable Steps 2 & 3
+                signInContainer.classList.add('hidden');
+                authMsg.classList.remove('hidden');
+
+                // 2. Enable Step 2
                 step2.classList.remove('disabled');
-                step3.classList.remove('disabled');
+                step2.classList.add('active');
 
                 // 3. Mount User Button in Header
                 const userButtonDiv = document.getElementById('user-button');
@@ -533,18 +701,17 @@
 
             } else {
                 // === GUEST ===
-                
-                // Ensure steps 2/3 are disabled
+
+                // Ensure step 2 is disabled
                 step2.classList.add('disabled');
-                step3.classList.add('disabled');
 
                 // Mount Sign In form in Step 1
                 window.Clerk.mountSignIn(signInContainer, {
-                    afterSignInUrl: window.location.href, 
+                    afterSignInUrl: window.location.href,
                     afterSignUpUrl: window.location.href,
                     appearance: {
                         elements: {
-                            footer: "hidden", 
+                            footer: "hidden",
                             card: "shadow-none border-none",
                             headerTitle: "hidden",
                             headerSubtitle: "hidden"
